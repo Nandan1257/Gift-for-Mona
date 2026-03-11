@@ -7,9 +7,9 @@
 <style>
 
 body{
-font-family: "Edwardian Script ITC","Brush Script MT",cursive;
+font-family:"Edwardian Script ITC","Brush Script MT",cursive;
 text-align:center;
-background: linear-gradient(135deg,#ff758c,#ff7eb3,#ff9a9e);
+background:linear-gradient(135deg,#ff758c,#ff7eb3,#ff9a9e);
 color:white;
 height:100vh;
 display:flex;
@@ -17,21 +17,12 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 padding:20px;
+overflow:hidden;
 }
 
-h1{
-font-size:90px;
-margin-bottom:20px;
-}
-
-h2{
-font-size:55px;
-}
-
-p{
-font-size:36px;
-margin:15px;
-}
+h1{font-size:95px;margin:20px;}
+h2{font-size:55px;}
+p{font-size:36px;margin:15px;}
 
 button{
 padding:18px 35px;
@@ -53,17 +44,26 @@ text-align:center;
 width:320px;
 }
 
-#question{
-display:none;
-}
-
-#birthday{
-display:none;
-}
-
 img{
 border-radius:20px;
-margin-top:20px;
+margin-top:25px;
+width:300px;
+}
+
+#question{display:none;}
+#gate{display:none;}
+#flowerPage{display:none;}
+
+.rose{
+position:fixed;
+top:-10px;
+font-size:30px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
 }
 
 </style>
@@ -72,16 +72,14 @@ margin-top:20px;
 <body>
 
 
-<!-- INTRO PAGE -->
+<!-- INTRO -->
 
 <div id="intro">
 
 <h1>Hi Monalisa ❤️</h1>
 
 <p>It's Nandan here.</p>
-
 <p>I got a small surprise for you.</p>
-
 <p>But you'll have to reveal it.</p>
 
 <button onclick="showQuestion()">Reveal the surprise 🎁</button>
@@ -90,7 +88,7 @@ margin-top:20px;
 
 
 
-<!-- QUESTION PAGE -->
+<!-- QUESTION -->
 
 <div id="question">
 
@@ -110,17 +108,31 @@ margin-top:20px;
 
 
 
-<!-- BIRTHDAY PAGE -->
+<!-- SUCCESS PAGE -->
 
-<div id="birthday">
+<div id="gate">
 
-<h1>Happy Birthday Mona baby ❤️</h1>
+<h1>Oh Babyy! You got it... ❤️</h1>
 
-<p>You are one of the most amazing people in my life.</p>
+<p>Now, here's it.</p>
 
-<p>I'm really lucky to know you.</p>
+<button onclick="showFlower()">Click to continue 🌹</button>
 
-<p>Happy Birthday 🎂</p>
+</div>
+
+
+
+<!-- FLOWER PAGE -->
+
+<div id="flowerPage">
+
+<h1>🎉 Happy Birthday Chota Baby 🎉</h1>
+
+<p>Here’s a flower for you 🌹</p>
+
+<img src="flower.jpg">
+
+<p>From Nandan ❤️</p>
 
 </div>
 
@@ -129,29 +141,56 @@ margin-top:20px;
 <script>
 
 function showQuestion(){
-
 document.getElementById("intro").style.display="none";
 document.getElementById("question").style.display="block";
-
 }
 
 function checkAnswer(){
 
-let ans = document.getElementById("answer").value
+let ans=document.getElementById("answer").value
 .toLowerCase()
 .replace(/\s/g,'');
 
-if(ans === "sairam"){
+if(ans==="sairam"){
 
 document.getElementById("question").style.display="none";
-document.getElementById("birthday").style.display="block";
+document.getElementById("gate").style.display="block";
 
 }else{
 
-document.getElementById("hint").innerText =
-"Hmm... that's not it. Think again ❤️";
+document.getElementById("hint").innerText="Hmm... think again ❤️";
 
 }
+
+}
+
+function showFlower(){
+
+document.getElementById("gate").style.display="none";
+document.getElementById("flowerPage").style.display="block";
+
+startPetals();
+
+}
+
+
+
+function startPetals(){
+
+setInterval(()=>{
+
+let petal=document.createElement("div");
+petal.className="rose";
+petal.innerHTML="🌹";
+
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(petal);
+
+setTimeout(()=>petal.remove(),6000);
+
+},200);
 
 }
 
