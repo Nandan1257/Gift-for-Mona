@@ -33,6 +33,7 @@ background:white;
 color:#ff4f81;
 cursor:pointer;
 margin-top:20px;
+cursor:pointer;
 }
 
 input{
@@ -55,11 +56,19 @@ width:350px;
 #flowerPage{display:none;}
 #birthday{display:none;}
 #blessingPage{display:none;}
+#cakePage{display:none;}
 
 .rose{
 position:fixed;
 top:-10px;
 font-size:30px;
+animation:fall linear forwards;
+}
+
+.confetti{
+position:fixed;
+top:-10px;
+font-size:28px;
 animation:fall linear forwards;
 }
 
@@ -70,6 +79,12 @@ animation:fall linear forwards;
 
 .slideshow img{
 display:none;
+}
+
+.cake{
+font-size:120px;
+cursor:pointer;
+margin-top:40px;
 }
 
 </style>
@@ -180,6 +195,24 @@ display:none;
 
 </div>
 
+<button onclick="showCake()">Time to cut the cake 🎂</button>
+
+</div>
+
+
+
+<!-- CAKE PAGE -->
+
+<div id="cakePage">
+
+<h1>Now it's time to cut the cake 🎂</h1>
+
+<p>Tap the cake to cut it!</p>
+
+<div class="cake" onclick="cutCake()">🎂</div>
+
+<p id="finalMessage"></p>
+
 </div>
 
 
@@ -235,6 +268,13 @@ startSlideshow();
 
 }
 
+function showCake(){
+
+document.getElementById("blessingPage").style.display="none";
+document.getElementById("cakePage").style.display="block";
+
+}
+
 
 
 function startPetals(){
@@ -272,6 +312,40 @@ slides[index].style.display="block";
 index=(index+1)%slides.length;
 
 },2000);
+
+}
+
+
+
+function cutCake(){
+
+startConfetti();
+
+document.getElementById("finalMessage").innerText="🎉 Yay! Cake officially cut! 🎉";
+
+}
+
+
+
+function startConfetti(){
+
+setInterval(()=>{
+
+let piece=document.createElement("div");
+piece.className="confetti";
+
+let items=["🎉","🎊","🎂","🍰","🧁"];
+
+piece.innerHTML=items[Math.floor(Math.random()*items.length)];
+
+piece.style.left=Math.random()*100+"vw";
+piece.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(piece);
+
+setTimeout(()=>piece.remove(),6000);
+
+},150);
 
 }
 
