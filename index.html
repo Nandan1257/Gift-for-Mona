@@ -2,13 +2,14 @@
 <html>
 
 <head>
-<title>Gift for Mona</title>
+<title>Mona's Birthday Surprise ❤️</title>
 
 <style>
+
 body{
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     text-align:center;
-    background: linear-gradient(135deg,#ff758c,#ff7eb3,#ff9a9e);;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3,#ff9a9e);
     color:white;
     height:100vh;
     display:flex;
@@ -19,7 +20,7 @@ body{
 
 button{
     padding:15px 25px;
-    font-size:20px;
+    font-size:18px;
     border:none;
     border-radius:10px;
     background:white;
@@ -27,35 +28,82 @@ button{
     cursor:pointer;
 }
 
-#surprise{
+#birthday{
     display:none;
-    margin-top:30px;
-    font-size:22px;
 }
-</style>
 
+img{
+    border-radius:20px;
+    margin-top:20px;
+}
+
+</style>
 </head>
 
 <body>
 
-<h1>Happy Birthday, Mona baby ❤️</h1>
 
-<button onclick="show()">Click for your surprise 🎁</button>
+<!-- INTRO SCREEN -->
 
-<div id="surprise">
-<p>You are one of the most amazing person in my life.</p>
-<p>I'm really lucky to know you, to Love you.</p>
-<p>May this year bring you happiness, laughter, and everything you dream about.</p>
-<p>Happy Birthday 🎂</p>
+<div id="intro">
+
+<h1>Hi Monalisa ❤️</h1>
+
+<p>It's Nandan here.</p>
+
+<p>I have a small surprise for you.</p>
+
+<p>But you’ll have to reveal it.</p>
+
+<button onclick="showSurprise()">Click to find your surprise 🎁</button>
+
 </div>
 
+
+
+<!-- BIRTHDAY SCREEN -->
+
+<div id="birthday">
+
+<h1>Happy Birthday Mona baby ❤️</h1>
+
+<p>You are one of the most amazing people in my life.</p>
+
+<p>I'm really lucky to know you, to love you.</p>
+
+<p>May this year bring you happiness, laughter and everything you dream about.</p>
+
+<p>Happy Birthday 🎂</p>
+
+
+<!-- ADD PHOTO HERE -->
+<!-- Replace mona.jpg with your photo filename -->
+
+<img src="mona.jpg" width="250">
+
+
+<!-- ADD MUSIC HERE -->
+<!-- Replace song.mp3 with your song -->
+
+<audio controls autoplay loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+
+</div>
+
+
+
 <script>
-function show(){
-document.getElementById("surprise").style.display="block";
+
+function showSurprise(){
+
+document.getElementById("intro").style.display="none";
+document.getElementById("birthday").style.display="block";
+
 }
+
 </script>
 
 </body>
-
 </html>
-
