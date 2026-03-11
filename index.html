@@ -47,12 +47,14 @@ width:320px;
 img{
 border-radius:20px;
 margin-top:25px;
-width:300px;
+width:350px;
 }
 
 #question{display:none;}
 #gate{display:none;}
 #flowerPage{display:none;}
+#birthday{display:none;}
+#blessingPage{display:none;}
 
 .rose{
 position:fixed;
@@ -66,11 +68,14 @@ animation:fall linear forwards;
 100%{transform:translateY(110vh) rotate(360deg);}
 }
 
+.slideshow img{
+display:none;
+}
+
 </style>
 </head>
 
 <body>
-
 
 <!-- INTRO -->
 
@@ -134,6 +139,47 @@ animation:fall linear forwards;
 
 <p>From Nandan ❤️</p>
 
+<button onclick="showBirthday()">Click to continue 🎂</button>
+
+</div>
+
+
+
+<!-- BIRTHDAY MESSAGE -->
+
+<div id="birthday">
+
+<h1>Happy Birthday Mona baby ❤️</h1>
+
+<p>You are one of the most amazing people in my life.</p>
+
+<p>I'm really lucky to know you.</p>
+
+<p>Happy Birthday 🎂</p>
+
+<button onclick="showBlessing()">One more thing ✨</button>
+
+</div>
+
+
+
+<!-- BLESSING PAGE -->
+
+<div id="blessingPage">
+
+<h1>✨ A small wish for you ✨</h1>
+
+<p>May Swami shower his choicest blessings on you lo...</p>
+
+<p>Many many happy returns of the day ❤️</p>
+
+<div class="slideshow">
+
+<img src="Swami.jpg">
+<img src="Swami(1).jpg">
+
+</div>
+
 </div>
 
 
@@ -173,6 +219,22 @@ startPetals();
 
 }
 
+function showBirthday(){
+
+document.getElementById("flowerPage").style.display="none";
+document.getElementById("birthday").style.display="block";
+
+}
+
+function showBlessing(){
+
+document.getElementById("birthday").style.display="none";
+document.getElementById("blessingPage").style.display="block";
+
+startSlideshow();
+
+}
+
 
 
 function startPetals(){
@@ -191,6 +253,25 @@ document.body.appendChild(petal);
 setTimeout(()=>petal.remove(),6000);
 
 },200);
+
+}
+
+
+
+function startSlideshow(){
+
+let slides=document.querySelectorAll(".slideshow img");
+let index=0;
+
+setInterval(()=>{
+
+slides.forEach(img=>img.style.display="none");
+
+slides[index].style.display="block";
+
+index=(index+1)%slides.length;
+
+},2000);
 
 }
 
