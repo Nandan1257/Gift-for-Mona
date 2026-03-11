@@ -7,34 +7,62 @@
 <style>
 
 body{
-    font-family: Arial, sans-serif;
-    text-align:center;
-    background: linear-gradient(135deg,#ff758c,#ff7eb3,#ff9a9e);
-    color:white;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+font-family: "Edwardian Script ITC","Brush Script MT",cursive;
+text-align:center;
+background: linear-gradient(135deg,#ff758c,#ff7eb3,#ff9a9e);
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
+}
+
+h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+h2{
+font-size:40px;
+}
+
+p{
+font-size:24px;
+margin:10px;
 }
 
 button{
-    padding:15px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    background:white;
-    color:#ff4f81;
-    cursor:pointer;
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:white;
+color:#ff4f81;
+cursor:pointer;
+margin-top:20px;
+}
+
+input{
+padding:10px;
+font-size:18px;
+border-radius:8px;
+border:none;
+text-align:center;
+}
+
+#question{
+display:none;
 }
 
 #birthday{
-    display:none;
+display:none;
 }
 
 img{
-    border-radius:20px;
-    margin-top:20px;
+border-radius:20px;
+margin-top:20px;
 }
 
 </style>
@@ -43,7 +71,7 @@ img{
 <body>
 
 
-<!-- INTRO SCREEN -->
+<!-- INTRO PAGE -->
 
 <div id="intro">
 
@@ -51,17 +79,37 @@ img{
 
 <p>It's Nandan here.</p>
 
-<p>I have a small surprise for you.</p>
+<p>I got a small surprise for you.</p>
 
-<p>But you’ll have to reveal it.</p>
+<p>But you'll have to reveal it.</p>
 
-<button onclick="showSurprise()">Click to find your surprise 🎁</button>
+<button onclick="showQuestion()">Reveal the surprise 🎁</button>
 
 </div>
 
 
 
-<!-- BIRTHDAY SCREEN -->
+<!-- QUESTION PAGE -->
+
+<div id="question">
+
+<h2>But before that I wanna ask you something...</h2>
+
+<p>What is that single word we greet in the end of each conversation?</p>
+
+<input id="answer" type="text" placeholder="Type your answer here">
+
+<br><br>
+
+<button onclick="checkAnswer()">Submit</button>
+
+<p id="hint"></p>
+
+</div>
+
+
+
+<!-- BIRTHDAY PAGE -->
 
 <div id="birthday">
 
@@ -69,26 +117,9 @@ img{
 
 <p>You are one of the most amazing people in my life.</p>
 
-<p>I'm really lucky to know you, to love you.</p>
-
-<p>May this year bring you happiness, laughter and everything you dream about.</p>
+<p>I'm really lucky to know you.</p>
 
 <p>Happy Birthday 🎂</p>
-
-
-<!-- ADD PHOTO HERE -->
-<!-- Replace mona.jpg with your photo filename -->
-
-<img src="mona.jpg" width="250">
-
-
-<!-- ADD MUSIC HERE -->
-<!-- Replace song.mp3 with your song -->
-
-<audio controls autoplay loop>
-<source src="song.mp3" type="audio/mpeg">
-</audio>
-
 
 </div>
 
@@ -96,10 +127,30 @@ img{
 
 <script>
 
-function showSurprise(){
+function showQuestion(){
 
 document.getElementById("intro").style.display="none";
+document.getElementById("question").style.display="block";
+
+}
+
+function checkAnswer(){
+
+let ans = document.getElementById("answer").value
+.toLowerCase()
+.replace(/\s/g,'');
+
+if(ans === "sairam"){
+
+document.getElementById("question").style.display="none";
 document.getElementById("birthday").style.display="block";
+
+}else{
+
+document.getElementById("hint").innerText =
+"Hmm... that's not it. Think again ❤️";
+
+}
 
 }
 
