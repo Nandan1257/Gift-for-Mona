@@ -33,7 +33,6 @@ background:white;
 color:#ff4f81;
 cursor:pointer;
 margin-top:20px;
-cursor:pointer;
 }
 
 input{
@@ -57,6 +56,7 @@ width:350px;
 #birthday{display:none;}
 #blessingPage{display:none;}
 #cakePage{display:none;}
+#finalPage{display:none;}
 
 .rose{
 position:fixed;
@@ -87,6 +87,12 @@ cursor:pointer;
 margin-top:40px;
 }
 
+.cakePieces{
+font-size:120px;
+display:none;
+gap:40px;
+}
+
 </style>
 </head>
 
@@ -95,15 +101,11 @@ margin-top:40px;
 <!-- INTRO -->
 
 <div id="intro">
-
 <h1>Hi Monalisa ❤️</h1>
-
 <p>It's Nandan here.</p>
 <p>I got a small surprise for you.</p>
 <p>But you'll have to reveal it.</p>
-
 <button onclick="showQuestion()">Reveal the surprise 🎁</button>
-
 </div>
 
 
@@ -111,19 +113,12 @@ margin-top:40px;
 <!-- QUESTION -->
 
 <div id="question">
-
 <h2>But before that I wanna ask you something...</h2>
-
 <p>What is that single word we greet in the end of each conversation?</p>
-
 <input id="answer" type="text" placeholder="Type your answer here">
-
 <br><br>
-
 <button onclick="checkAnswer()">Submit</button>
-
 <p id="hint"></p>
-
 </div>
 
 
@@ -131,13 +126,9 @@ margin-top:40px;
 <!-- SUCCESS PAGE -->
 
 <div id="gate">
-
 <h1>Oh Babyy! You got it... ❤️</h1>
-
 <p>Now, here's it.</p>
-
 <button onclick="showFlower()">Click to continue 🌹</button>
-
 </div>
 
 
@@ -145,17 +136,11 @@ margin-top:40px;
 <!-- FLOWER PAGE -->
 
 <div id="flowerPage">
-
 <h1>🎉 Happy Birthday Chota Baby 🎉</h1>
-
 <p>Here’s a flower for you 🌹</p>
-
 <img src="flower.jpg">
-
 <p>From Nandan ❤️</p>
-
 <button onclick="showBirthday()">Click to continue 🎂</button>
-
 </div>
 
 
@@ -163,17 +148,11 @@ margin-top:40px;
 <!-- BIRTHDAY MESSAGE -->
 
 <div id="birthday">
-
 <h1>Happy Birthday Mona baby ❤️</h1>
-
 <p>You are one of the most amazing people in my life.</p>
-
 <p>I'm really lucky to know you.</p>
-
 <p>Happy Birthday 🎂</p>
-
 <button onclick="showBlessing()">One more thing ✨</button>
-
 </div>
 
 
@@ -181,23 +160,16 @@ margin-top:40px;
 <!-- BLESSING PAGE -->
 
 <div id="blessingPage">
-
 <h1>✨ A small wish for you ✨</h1>
-
 <p>May Swami shower his choicest blessings on you lo...</p>
-
 <p>Many many happy returns of the day ❤️</p>
 
 <div class="slideshow">
-
 <img src="Swami.jpg">
 <img src="Swami(1).jpg">
-<img src="Swami(2).jpg">
-
 </div>
 
 <button onclick="showCake()">Time to cut the cake 🎂</button>
-
 </div>
 
 
@@ -207,12 +179,43 @@ margin-top:40px;
 <div id="cakePage">
 
 <h1>Now it's time to cut the cake 🎂</h1>
-
 <p>Tap the cake to cut it!</p>
 
-<div class="cake" onclick="cutCake()">🎂</div>
+<div id="wholeCake" class="cake" onclick="cutCake()">🎂</div>
 
-<p id="finalMessage"></p>
+<div id="cakePieces" class="cakePieces">
+<span>🍰</span>
+<span>🍰</span>
+</div>
+
+<p id="cakeMessage"></p>
+
+<button id="nextButton" style="display:none;" onclick="showFinal()">Continue ❤️</button>
+
+</div>
+
+
+
+<!-- FINAL PAGE -->
+
+<div id="finalPage">
+
+<h1>Thank you ❤️</h1>
+
+<p>
+I wish I could be there.<br><br>
+
+You are the best person I've ever met.<br>
+My world lights up when you're with me.<br>
+You're beautiful, caring, and things I can never imagine.<br><br>
+
+May Swami always protect this relationship.<br><br>
+
+Get well soon mo Dhana, Love you always, forever and ever......<br><br>
+
+Call me when you get back.<br>
+Missing you a lot.
+</p>
 
 </div>
 
@@ -232,69 +235,53 @@ let ans=document.getElementById("answer").value
 .replace(/\s/g,'');
 
 if(ans==="sairam"){
-
 document.getElementById("question").style.display="none";
 document.getElementById("gate").style.display="block";
-
 }else{
-
 document.getElementById("hint").innerText="Hmm... think again ❤️";
-
 }
 
 }
 
 function showFlower(){
-
 document.getElementById("gate").style.display="none";
 document.getElementById("flowerPage").style.display="block";
-
 startPetals();
-
 }
 
 function showBirthday(){
-
 document.getElementById("flowerPage").style.display="none";
 document.getElementById("birthday").style.display="block";
-
 }
 
 function showBlessing(){
-
 document.getElementById("birthday").style.display="none";
 document.getElementById("blessingPage").style.display="block";
-
 startSlideshow();
-
 }
 
 function showCake(){
-
 document.getElementById("blessingPage").style.display="none";
 document.getElementById("cakePage").style.display="block";
+}
 
+function showFinal(){
+document.getElementById("cakePage").style.display="none";
+document.getElementById("finalPage").style.display="block";
 }
 
 
 
 function startPetals(){
-
 setInterval(()=>{
-
 let petal=document.createElement("div");
 petal.className="rose";
 petal.innerHTML="🌹";
-
 petal.style.left=Math.random()*100+"vw";
 petal.style.animationDuration=(3+Math.random()*3)+"s";
-
 document.body.appendChild(petal);
-
 setTimeout(()=>petal.remove(),6000);
-
 },200);
-
 }
 
 
@@ -320,9 +307,15 @@ index=(index+1)%slides.length;
 
 function cutCake(){
 
+document.getElementById("wholeCake").style.display="none";
+document.getElementById("cakePieces").style.display="flex";
+
 startConfetti();
 
-document.getElementById("finalMessage").innerText="🎉 Yay! Cake officially cut! 🎉";
+document.getElementById("cakeMessage").innerText=
+"Yay!!! Happy Birthday Mona Baby... I wish I could be there for you. Anyways Sending you Hugs, Kisses and the Love of all the worlds mo Dhana.";
+
+document.getElementById("nextButton").style.display="inline-block";
 
 }
 
@@ -354,4 +347,3 @@ setTimeout(()=>piece.remove(),6000);
 
 </body>
 </html>
-
